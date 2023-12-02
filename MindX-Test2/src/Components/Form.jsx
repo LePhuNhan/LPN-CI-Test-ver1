@@ -8,6 +8,11 @@ const Form = () => {
     const {dispatch,state}=useContext(TodoContext);
     const [checked, setChecked] = useState(false);
     // console.log("context => ",dispatch);
+    useEffect(() => {
+        const storedTodos = JSON.parse(localStorage.getItem('todos')) || [];
+        console.log(storedTodos);
+        dispatch({ type: 'load', payload: storedTodos });
+      }, []);
     const onSubmitHandler = () => {
         if(state.editIndex!==null){
             dispatch({

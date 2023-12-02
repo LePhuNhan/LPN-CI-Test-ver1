@@ -6,6 +6,11 @@ const List = () => {
     const {state, dispatch}=useContext(TodoContext);
     const [title, setTitle] = useState("");
     const [checked, setChecked] = useState("");
+    useEffect(() => {
+        const storedTodos = JSON.parse(localStorage.getItem('todos')) || [];
+        console.log(storedTodos);
+        dispatch({ type: 'load', payload: storedTodos });
+      }, []);
     const updateHandler=(index)=>{
         
         setChecked(state.todos[index].checked=!state.todos[index].checked)
@@ -30,6 +35,14 @@ const List = () => {
             }
         })
     }
+    useEffect(() => {
+        // Load data from localStorage when the component mounts
+        const storedTodos = JSON.parse(localStorage.getItem('todos')) || [];
+        dispatch({
+          type: "load",
+          payload: storedTodos,
+        });
+      }, [dispatch]);
     useEffect(()=>{
         if(state.editIndex!==null){
             setTitle[state.todos[state.editIndex].title];

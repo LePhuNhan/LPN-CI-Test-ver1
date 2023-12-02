@@ -55,7 +55,20 @@ const reducer = (state, action) => {
 const TodoProvider = (props) => {
     const [state, dispatch] = useReducer(reducer, { todos: [], editIndex: null })
     useEffect(() => {
-        localStorage.setItem('todos', JSON.stringify(state.todos));
+        const storedTodos = JSON.parse(localStorage.getItem('todos')) || [];
+        console.log(storedTodos);
+        dispatch({ type: 'load', payload: storedTodos });
+      }, []);
+      useEffect(() => {
+        const saveToLocalStorage = () => {
+          localStorage.setItem('todos', JSON.stringify(state.todos));
+        };
+      
+        const timeoutId = setTimeout(saveToLocalStorage, 100);
+      
+        return () => {
+          clearTimeout(timeoutId);
+        };
       }, [state.todos]);
     return (
         <TodoContext.Provider value={{ state, dispatch }}>
