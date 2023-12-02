@@ -1,9 +1,8 @@
 # LPN-CI-Test-ver1
 MindX Test 2
 # How to run
-Step 1)
-npm install
-Step 2)
+--Step 1) npm install
+--Step 2)
 npm install @mui/icons-material   
 Step 3)
 npm install @mui/material @mui/styled-engine-sc styled-components
