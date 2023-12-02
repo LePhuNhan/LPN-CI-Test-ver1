@@ -11,5 +11,5 @@ Step 4)
 npm install @mui/material @emotion/react @emotion/styled
 Step 5)
 npm run dev
-#Locol storage
+# Locol storage
 name: Todos
